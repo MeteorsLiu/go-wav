@@ -37,6 +37,10 @@ func (r *Reader) Format() (format *WavFormat, err error) {
 	return
 }
 
+func (r *Reader) Info() (*WavInfo, error) {
+	return r.readInfo()
+}
+
 func (r *Reader) Duration() (time.Duration, error) {
 	format, err := r.Format()
 	if err != nil {
@@ -175,6 +179,35 @@ func (r *Reader) readFormat() (fmt *WavFormat, err error) {
 	if err != nil {
 		return
 	}
+
+	return
+}
+
+func (r *Reader) readInfo() (info *WavInfo, err error) {
+	var riffChunk *riff.RIFFChunk
+	info = new(WavInfo)
+
+	var fmt *WavFormat
+	var wavData *WavData
+	if r.format != nil {
+		fmt = r.format
+	} else {
+		fmt, err = r.Format()
+		if err != nil {
+			return
+		}
+	}
+	if r.WavData != nil {
+		wavData = r.WavData
+	} else {
+		r.loadWavData()
+	}
+
+	info.FrameRate = int(fmt.SampleRate)
+	info.NChannels = int(fmt.NumChannels)
+	info.SampleWidth = int(fmt.BitsPerSample+7) / 8
+	info.FrameSize = info.SampleWidth * info.NChannels
+	info.NFrames = int(wavData.Size) / info.FrameSize
 
 	return
 }

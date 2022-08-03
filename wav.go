@@ -20,6 +20,14 @@ type WavFormat struct {
 	BitsPerSample uint16
 }
 
+type WavInfo struct {
+	NFrames     int
+	SampleWidth int
+	FrameRate   int
+	NChannels   int
+	FrameSize   int
+}
+
 type WavData struct {
 	io.Reader
 	Size uint32
