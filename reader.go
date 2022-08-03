@@ -184,7 +184,6 @@ func (r *Reader) readFormat() (fmt *WavFormat, err error) {
 }
 
 func (r *Reader) readInfo() (info *WavInfo, err error) {
-	var riffChunk *riff.RIFFChunk
 	info = new(WavInfo)
 
 	var fmt *WavFormat
