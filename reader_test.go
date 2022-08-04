@@ -108,6 +108,8 @@ func TestReadMulaw(t *testing.T) {
 	t.Logf("Data size: %d", len(bytes))
 }
 func TestReadInfo(t *testing.T) {
+	file, _ := os.Open("/home/nfs/py/GVRD-94/1.wav")
+	defer file.Close()
 	reader := NewReader(file)
 	t.Log(reader.Info())
 }
