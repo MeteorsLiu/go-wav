@@ -111,11 +111,11 @@ func TestReadInfo(t *testing.T) {
 	file, _ := os.Open("/home/nfs/py/GVRD-94/1.wav")
 	defer file.Close()
 	i, _ := NewReader(file).Info()
-	t.Log("nframes: " + i.NFrames)
-	t.Log("SampleWidth: " + i.SampleWidth)
-	t.Log("FrameRate: " + i.FrameRate)
-	t.Log("NChannels: " + i.NChannels)
-	t.Log("FrameSize: " + i.FrameSize)
+	t.Logf("nframes: %d", i.NFrames)
+	t.Logf("SampleWidth: %d", i.SampleWidth)
+	t.Logf("FrameRate: %d", i.FrameRate)
+	t.Logf("NChannels: %d", i.NChannels)
+	t.Logf("FrameSize: %d", i.FrameSize)
 }
 func TestReadAlaw(t *testing.T) {
 	blockAlign := 1
