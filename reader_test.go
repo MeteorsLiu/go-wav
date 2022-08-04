@@ -110,8 +110,12 @@ func TestReadMulaw(t *testing.T) {
 func TestReadInfo(t *testing.T) {
 	file, _ := os.Open("/home/nfs/py/GVRD-94/1.wav")
 	defer file.Close()
-	reader := NewReader(file)
-	t.Log(reader.Info())
+	i, _ := NewReader(file).Info()
+	t.Log("nframes: " + i.NFrames)
+	t.Log("SampleWidth: " + i.SampleWidth)
+	t.Log("FrameRate: " + i.FrameRate)
+	t.Log("NChannels: " + i.NChannels)
+	t.Log("FrameSize: " + i.FrameSize)
 }
 func TestReadAlaw(t *testing.T) {
 	blockAlign := 1
