@@ -200,6 +200,7 @@ func (r *Reader) readInfo() (info *WavInfo, err error) {
 		wavData = r.WavData
 	} else {
 		r.loadWavData()
+		wavData = r.WavData
 	}
 
 	info.FrameRate = int(fmt.SampleRate)
