@@ -107,7 +107,10 @@ func TestReadMulaw(t *testing.T) {
 
 	t.Logf("Data size: %d", len(bytes))
 }
-
+func TestReadInfo(t *testing.T) {
+	reader := NewReader(file)
+	t.Log(reader.Info())
+}
 func TestReadAlaw(t *testing.T) {
 	blockAlign := 1
 
